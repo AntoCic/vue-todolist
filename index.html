@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google icon -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./style/bootstrap.css">
+    <!-- style -->
+    <link rel="stylesheet" href="./style/index.css">
+    <!-- vue -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <title>title</title>
+</head>
+
+<body>
+    <div id="app" class="p-5">
+        <div class="card" style="width: 100%;">
+            <div class="card-header text-center">
+                <div class="input-group ">
+                    <input @keyup.enter="addTask" type="text" v-model="inputVal" class="form-control"
+                        placeholder="nuova task">
+                    <button @click="addTask" class="btn btn-outline-secondary fs-4" type="button">+</button>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <div v-for="(task, i) in tasks" class="input-group">
+
+                    <div @click="task.done = !task.done" class="input-group-text bg-transparent flex-grow-1">
+                        <del v-if="task.done">
+                            {{ task.text }}
+                        </del>
+                        <span v-else>
+                            {{ task.text }}
+                        </span>
+                    </div>
+
+                    <button @click="tasks.splice(i, 1)" @mouseover="btnHover = i" @mouseleave="btnHover = null"
+                        class="btn btn-outline-secondary" type="button">
+                        <span v-if="i === btnHover">❌</span>
+                        <span v-else>🗑️</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
